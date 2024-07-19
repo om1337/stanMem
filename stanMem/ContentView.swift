@@ -26,7 +26,7 @@ struct CardView: View {
 //  Game logic should be stored in a different mechanism
     
     @State var isFaceUp = false
-    let placedEmoji: String = ""
+    let placedEmoji: String
     
     var body: some View {
         let base = RoundedRectangle(cornerRadius: 12)
