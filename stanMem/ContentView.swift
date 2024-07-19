@@ -10,10 +10,10 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         HStack() {
-            CardView(isFaceUp: false)
-            CardView(isFaceUp: false)
-            CardView(isFaceUp: true)
-            CardView(isFaceUp: true)
+            CardView(isFaceUp: false, placedEmoji: "😎")
+            CardView(isFaceUp: false, placedEmoji: "😎")
+            CardView(isFaceUp: true, placedEmoji: "👻")
+            CardView(isFaceUp: true, placedEmoji: "👻")
         }
         .foregroundColor(.orange)
         .padding()
@@ -26,6 +26,7 @@ struct CardView: View {
 //  Game logic should be stored in a different mechanism
     
     @State var isFaceUp = false
+    let placedEmoji: String = ""
     
     var body: some View {
         let base = RoundedRectangle(cornerRadius: 12)
@@ -34,7 +35,7 @@ struct CardView: View {
             if isFaceUp {
                 base.foregroundColor(.white)
                 base.strokeBorder(lineWidth: 2)
-                Text("👻").font(.largeTitle)
+                Text(placedEmoji).font(.largeTitle)
             } else {
                 base.fill()
             }
