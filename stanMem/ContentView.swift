@@ -19,14 +19,20 @@ struct ContentView: View {
                 CardView(placedEmoji: emojis[index])
             }
             
+        }
+        .foregroundColor(.orange)
+        .padding()
+        
+        VStack {
             Button("Add Card") {
                 cardCount += 1
             }
             
-            
+            Button("Remove Card") {
+                cardCount -= 1
+            }
+            .padding(20)
         }
-        .foregroundColor(.orange)
-        .padding()
     }
 }
 
