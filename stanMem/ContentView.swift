@@ -2,24 +2,27 @@
 //  ContentView.swift
 //  stanMem
 //
-//  Created by Om Nagarkar on 7/19/24.
-//
 
 import SwiftUI
 
 struct ContentView: View {
+    
+    let emojis = ["😎", "😎", "👻", "👻", "😎", "😎", "😎", "👻", "👻", "😎"]
+    
+    @State var cardCount: Int = 4
+    
     var body: some View {
         
-        let emojis: Array<String> = ["😎", "😎", "👻", "👻"]
-//      let emojis: [String] = ["😎", "😎", "👻", "👻"]
-        
-        HStack() {
-//          ForEach(0...4,) // Up to 4, including
-//          ForEach(0..<4,) // Up to 4, not including
+        HStack {
             
-            ForEach(0..<4, id: \.self) { index in
+            ForEach(0..<cardCount, id: \.self) { index in
                 CardView(placedEmoji: emojis[index])
             }
+            
+            Button("Add Card") {
+                cardCount += 1
+            }
+            
             
         }
         .foregroundColor(.orange)
@@ -28,9 +31,6 @@ struct ContentView: View {
 }
 
 struct CardView: View {
-    
-//  @State can scrappily simulate and bypass the immutability
-//  Game logic should be stored in a different mechanism
     
     @State var isFaceUp = false
     let placedEmoji: String
