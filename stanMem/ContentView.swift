@@ -24,16 +24,43 @@ struct ContentView: View {
         .padding()
         
         VStack {
-            Button("Add Card") {
-                cardCount += 1
+            HStack {
+                
+                cardRemover
+                
+                Spacer()
+                
+                cardAdder
             }
-            
-            Button("Remove Card") {
+            .imageScale(.large)
+            .font(.title2)
+            .safeAreaPadding()
+        }
+        
+    }
+    
+    var cardRemover: some View {
+        Button(action: {
+            if cardCount > 1 {
                 cardCount -= 1
             }
-            .padding(20)
-        }
+        }, label: {
+            Image(systemName: "xmark.circle")
+            Text("Remove Card")
+        })
     }
+    
+    var cardAdder: some View {
+        Button(action: {
+            if cardCount < emojis.count {
+                cardCount += 1
+            }
+        }, label: {
+            Image(systemName: "plus.circle")
+            Text("Add Card")
+        })
+    }
+    
 }
 
 struct CardView: View {
