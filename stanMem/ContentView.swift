@@ -3,18 +3,30 @@
 //  stanMem
 //
 
+// implicit returns on one line of code for component views 
+
 import SwiftUI
 
 struct ContentView: View {
     
+    // Data Logic
     let emojis = ["😎", "😎", "👻", "👻", "😎", "😎", "😎", "👻", "👻", "😎"]
     
     @State var cardCount: Int = 4
     
+    
+    // UI Body Render
     var body: some View {
         
+        cards
+        
+        cardCountHandlers
+    }
+    
+    
+    // Component Views
+    var cards: some View {
         HStack {
-            
             ForEach(0..<cardCount, id: \.self) { index in
                 CardView(placedEmoji: emojis[index])
             }
@@ -22,7 +34,10 @@ struct ContentView: View {
         }
         .foregroundColor(.orange)
         .padding()
-        
+    }
+    
+    // // Card Remover & Adder Buttons
+    var cardCountHandlers: some View {
         VStack {
             HStack {
                 
@@ -36,9 +51,9 @@ struct ContentView: View {
             .font(.title2)
             .safeAreaPadding()
         }
-        
     }
     
+    // // Card Remover Button
     var cardRemover: some View {
         Button(action: {
             if cardCount > 1 {
@@ -50,6 +65,7 @@ struct ContentView: View {
         })
     }
     
+    // // Card Adder Button
     var cardAdder: some View {
         Button(action: {
             if cardCount < emojis.count {
@@ -63,6 +79,7 @@ struct ContentView: View {
     
 }
 
+//
 struct CardView: View {
     
     @State var isFaceUp = false
